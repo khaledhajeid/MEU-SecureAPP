@@ -5,22 +5,20 @@ namespace SecureBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // هاي الكلمة معناها: ممنوع الدخول بدون JWT Token صحيح
+    [Authorize]
     public class TestController : ControllerBase
     {
-        // أي يوزر مسجل بيقدر يشوف هاد الرابط
         [HttpGet("user-data")]
         public IActionResult GetUserData()
         {
-            return Ok(new { Message = "أهلاً بك! أنت تملك Token صحيح." });
+            return Ok(new { Message = "Welcome you have a right Token" });
         }
 
-        // هاد الرابط محمي جداً: فقط اللي عنده Role اسمها Admin بيقدر يشوفه
         [Authorize(Roles = "Admin")] 
         [HttpGet("admin-data")]
         public IActionResult GetAdminData()
         {
-            return Ok(new { Message = "أهلاً بك يا مدير! هاي بيانات سرية للـ Admin فقط." });
+            return Ok(new { Message = "Welcome Manager this data is secret, so it's only for the admin" });
         }
     }
 }

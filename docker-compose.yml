@@ -5,7 +5,7 @@ services:
     container_name: meu_secure_db
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=SuperSecurePass123! # رح نستخدمها للربط مع الـ C#
+      - SA_PASSWORD=SuperSecurePass123!
     ports:
       - "1433:1433"
     volumes:

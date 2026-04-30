@@ -9,19 +9,16 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      // إرسال الطلب للباك إند
       const response = await axios.post('http://localhost:5088/api/Auth/login', {
         username,
         password
       });
       
-      // تخزين الـ JWT في متصفح المستخدم (Client-side storage)
       localStorage.setItem('token', response.data.token);
-      setMessage('✅ تم تسجيل الدخول بنجاح! تم تخزين الـ Token.');
+      setMessage('Sucsessfuly login and added the token in the local storage');
       
     } catch (error) {
-      // Error Handling: إظهار رسالة خطأ عامة بدون تفاصيل حساسة
-      setMessage('❌ فشل تسجيل الدخول. تأكد من البيانات.');
+      setMessage('Login failed, check the username or password');
     }
   };
 

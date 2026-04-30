@@ -8,11 +8,9 @@ using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. ربط قاعدة البيانات (SQL Server)
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// 2. إعداد الـ Identity (بيدير المستخدمين وبيعمل Hashing للباسووردات تلقائياً)
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
     options.Password.RequireDigit = true;
     options.Password.RequiredLength = 8;
@@ -21,7 +19,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 .AddEntityFrameworkStores<AppDbContext>()
 .AddDefaultTokenProviders();
 
-// 3. إعداد الـ JWT Authentication
 var jwtKey = builder.Configuration["Jwt:Key"];
 builder.Services.AddAuthentication(options =>
 {
@@ -42,16 +39,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// 4. إعداد الـ CORS (عشان يقبل طلبات من مشروع React)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp",
-        policy => policy.WithOrigins("http://localhost:5173") // البورت الافتراضي لـ Vite React
+        policy => policy.WithOrigins("http://localhost:5173")
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
 
-// 5. إضافة الـ Rate Limiting (للبونص: حماية من الـ Brute-Force)
 builder.Services.AddRateLimiter(options =>
 {
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
@@ -60,9 +55,9 @@ builder.Services.AddRateLimiter(options =>
             factory: partition => new FixedWindowRateLimiterOptions
             {
                 AutoReplenishment = true,
-                PermitLimit = 100, // مسموح 100 طلب
+                PermitLimit = 100,
                 QueueLimit = 0,
-                Window = TimeSpan.FromMinutes(1) // كل دقيقة واحدة
+                Window = TimeSpan.FromMinutes(1)
             }));
 });
 
@@ -78,17 +73,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// تفعيل ميزات الأمان بالترتيب الصحيح (الترتيب هون جداً مهم!)
-app.UseRateLimiter(); // البونص
-app.UseHttpsRedirection(); // إجبار استخدام HTTPS
-app.UseCors("AllowReactApp"); // تفعيل الـ CORS
+app.UseRateLimiter();
+app.UseHttpsRedirection();
+app.UseCors("AllowReactApp");
 
-app.UseAuthentication(); // التحقق من الهوية أولاً
-app.UseAuthorization();  // ثم التحقق من الصلاحيات
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
-// 6. إنشاء الـ Roles (Admin و User) تلقائياً عند تشغيل المشروع
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
