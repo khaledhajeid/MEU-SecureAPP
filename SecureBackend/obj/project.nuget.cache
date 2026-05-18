@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ht1XVh86j8U=",
+  "dgSpecHash": "7oZ+9NLv/3M=",
   "success": true,
-  "projectFilePath": "/Users/khaledhajeid/Code/University/Web Application /Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
+  "projectFilePath": "/Users/khaledhajeid/Code/University/Application Security/Code/Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
   "expectedPackageFiles": [
     "/Users/khaledhajeid/.nuget/packages/azure.core/1.47.1/azure.core.1.47.1.nupkg.sha512",
     "/Users/khaledhajeid/.nuget/packages/azure.identity/1.14.2/azure.identity.1.14.2.nupkg.sha512",

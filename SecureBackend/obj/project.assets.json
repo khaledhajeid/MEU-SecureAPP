@@ -3649,11 +3649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/khaledhajeid/Code/University/Web Application /Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
+      "projectUniqueName": "/Users/khaledhajeid/Code/University/Application Security/Code/Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
       "projectName": "SecureBackend",
-      "projectPath": "/Users/khaledhajeid/Code/University/Web Application /Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
+      "projectPath": "/Users/khaledhajeid/Code/University/Application Security/Code/Code/MEU-SecureApp/SecureBackend/SecureBackend.csproj",
       "packagesPath": "/Users/khaledhajeid/.nuget/packages/",
-      "outputPath": "/Users/khaledhajeid/Code/University/Web Application /Code/MEU-SecureApp/SecureBackend/obj/",
+      "outputPath": "/Users/khaledhajeid/Code/University/Application Security/Code/Code/MEU-SecureApp/SecureBackend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/khaledhajeid/.nuget/NuGet/NuGet.Config"

@@ -1,45 +1,45 @@
 # Secure Web Application - MEU Security Project
 
 ## Description
-A secure web application developed as part of the Application Security course at Middle East University (MEU)[cite: 1]. This project demonstrates strong secure coding practices and applies secure SDLC principles[cite: 1].
+A secure web application developed as part of the Application Security course at Middle East University (MEU). This project demonstrates strong secure coding practices and applies secure SDLC principles.
 
 ## Tech Stack
-* **Frontend:** React.js (Vite)[cite: 1]
-* **Backend:** ASP.NET Core Web API 10.0[cite: 1]
+* **Frontend:** React.js (Vite)
+* **Backend:** ASP.NET Core Web API 10.0
 * **Database:** SQL Server (Dockerized)
-* **Authentication:** JWT + ASP.NET Core Identity (bcrypt equivalent hashing)[cite: 1]
-* **Deployment:** GitHub Repository / Localhost[cite: 1]
+* **Authentication:** JWT + ASP.NET Core Identity (bcrypt equivalent hashing)
+* **Deployment:** GitHub Repository / Localhost
 
 ## Features
-* User Registration and Secure Login[cite: 1]
-* Role-based access control (RBAC): Admin & User roles[cite: 1]
-* Stateless Session management using JWT[cite: 1]
-* Password hashing using ASP.NET Core Identity[cite: 1]
-* Input validation on both client and server sides[cite: 1]
-* Output sanitization to prevent XSS[cite: 1]
-* STRIDE & DREAD security modeling documented[cite: 1]
-* Rate-Limiting implemented to mitigate brute-force attacks (Bonus +1)[cite: 1].
+* User Registration and Secure Login
+* Role-based access control (RBAC): Admin & User roles
+* Stateless Session management using JWT
+* Password hashing using ASP.NET Core Identity
+* Input validation on both client and server sides
+* Output sanitization to prevent XSS
+* STRIDE & DREAD security modeling documented
+* Rate-Limiting implemented to mitigate brute-force attacks (Bonus +1).
 
 ## Security Implementations
-* **Input Validation:** ASP.NET Core Data Annotations & ModelState Validation[cite: 1].
-* **Output Sanitization:** DOMPurify implemented on the React frontend[cite: 1].
-* **Password Hashing:** ASP.NET Identity default hashing (PBKDF2/bcrypt standard)[cite: 1].
-* **Session Management:** Secure JWT with expiration and strict validation[cite: 1].
-* **Headers & Network:** HTTPS Redirection, Strict CORS policies[cite: 1].
-* **Authorization:** `[Authorize]` attributes with specific Role checks[cite: 1].
+* **Input Validation:** ASP.NET Core Data Annotations & ModelState Validation.
+* **Output Sanitization:** DOMPurify implemented on the React frontend.
+* **Password Hashing:** ASP.NET Identity default hashing (PBKDF2/bcrypt standard).
+* **Session Management:** Secure JWT with expiration and strict validation.
+* **Headers & Network:** HTTPS Redirection, Strict CORS policies.
+* **Authorization:** `[Authorize]` attributes with specific Role checks.
 
 ## Threat Modeling
-See [docs/STRIDE_Threat_Model.md](docs/STRIDE_Threat_Model.md) for the STRIDE Threat Model[cite: 1].
-See [docs/DREAD_Risk_Assessment.md](docs/DREAD_Risk_Assessment.md) for the DREAD Risk Assessment[cite: 1].
+See [docs/STRIDE_Threat_Model.md](docs/STRIDE_Threat_Model.md) for the STRIDE Threat Model.
+See [docs/DREAD_Risk_Assessment.md](docs/DREAD_Risk_Assessment.md) for the DREAD Risk Assessment.
 
 ## Code Scanning Tools Used
-- [x] GitHub CodeQL[cite: 1]
-- [ ] SonarQube[cite: 1]
-- [ ] Checkmarx[cite: 1]
-- [x] Snyk[cite: 1]
-- [ ] Bandit (if Python)[cite: 1]
+- [x] GitHub CodeQL
+- [ ] SonarQube
+- [ ] Checkmarx
+- [x] Snyk
+- [ ] Bandit (if Python)
 
-*Reports/screenshots are included in the `scans/` directory.*[cite: 1]
+*Reports/screenshots are included in the `scans/` directory.*
 
 ## Deployment
 **Instructions to run locally:**
@@ -63,7 +63,7 @@ npm run dev
 ## Folder Structure
 /secure-frontend    --> React App (Frontend)
 /SecureBackend      --> ASP.NET Web API (Backend)
-/docs               --> STRIDE, DREAD Documentation[cite: 1]
-/scans              --> Scanning reports/screenshots[cite: 1]
+/docs               --> STRIDE, DREAD Documentation
+/scans              --> Scanning reports/screenshots
 README.md
 docker-compose.yml  --> SQL Server environment
