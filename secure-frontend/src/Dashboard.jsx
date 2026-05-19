@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   const fetchData = async (endpoint) => {
     try {
-      const response = await axios.get(`http://localhost:5088/api/Test/${endpoint}`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/Test/${endpoint}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setApiData(`Server Response: ${response.data.message}`);

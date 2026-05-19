@@ -1,69 +1,74 @@
 # Secure Web Application - MEU Security Project
 
 ## Description
-A secure web application developed as part of the Application Security course at Middle East University (MEU). This project demonstrates strong secure coding practices and applies secure SDLC principles.
+A secure web application developed as part of the Application Security course at Middle East University (MEU). This project demonstrates strict secure coding practices, applying secure SDLC principles, RBAC, and modern web security mechanisms.
 
 ## Tech Stack
-* **Frontend:** React.js (Vite)
-* **Backend:** ASP.NET Core Web API 10.0
-* **Database:** SQL Server (Dockerized)
-* **Authentication:** JWT + ASP.NET Core Identity (bcrypt equivalent hashing)
-* **Deployment:** GitHub Repository / Localhost
+* **Frontend:** React.js (Vite), React Router DOM, Axios
+* **Backend:** ASP.NET Core Web API
+* **Database:** SQL Server
+* **Security Libraries:** DOMPurify, ASP.NET Core Identity
+* **Authentication:** Stateless JWT
 
 ## Features
 * User Registration and Secure Login
-* Role-based access control (RBAC): Admin & User roles
+* Role-based access control (RBAC): Admin and User roles
 * Stateless Session management using JWT
 * Password hashing using ASP.NET Core Identity
-* Input validation on both client and server sides
-* Output sanitization to prevent XSS
-* STRIDE & DREAD security modeling documented
-* Rate-Limiting implemented to mitigate brute-force attacks (Bonus +1).
+* Protected frontend routing
+* Environmental variable configuration for sensitive data
 
 ## Security Implementations
-* **Input Validation:** ASP.NET Core Data Annotations & ModelState Validation.
-* **Output Sanitization:** DOMPurify implemented on the React frontend.
-* **Password Hashing:** ASP.NET Identity default hashing (PBKDF2/bcrypt standard).
-* **Session Management:** Secure JWT with expiration and strict validation.
-* **Headers & Network:** HTTPS Redirection, Strict CORS policies.
-* **Authorization:** `[Authorize]` attributes with specific Role checks.
+* **Input/Output Sanitization:** Implemented DOMPurify on the client side and strict model validation on the server side to prevent XSS.
+* **Authentication & Authorization:** Implemented JWT-based session management and Role-Based Access Control (RBAC). Protected endpoints utilize Authorize attributes.
+* **Secrets Management:** All sensitive data, including database connection strings, JWT secret keys, and default admin credentials, are isolated using `.env` and `appsettings.json` files.
+* **Security Headers:** Enforced strict Content-Security-Policy (CSP), X-Frame-Options (DENY), X-Content-Type-Options (nosniff), and XSS-Protection via custom middleware.
+* **Rate Limiting:** Implemented a Fixed Window Rate Limiter (100 requests/minute) per IP address to mitigate Denial of Service (DoS) and brute-force attacks.
+* **Cryptography:** Utilized AES encryption concepts for data at rest and ASP.NET Identity default PBKDF2 hashing for passwords.
 
 ## Threat Modeling
-See [docs/STRIDE_Threat_Model.md](docs/STRIDE_Threat_Model.md) for the STRIDE Threat Model.
-See [docs/DREAD_Risk_Assessment.md](docs/DREAD_Risk_Assessment.md) for the DREAD Risk Assessment.
+* See `docs/STRIDE_Threat_Model.md` for the STRIDE Threat Model.
+* See `docs/DREAD_Risk_Assessment.md` for the DREAD Risk Assessment.
 
 ## Code Scanning Tools Used
 - [x] GitHub CodeQL
 - [ ] SonarQube
 - [ ] Checkmarx
 - [x] Snyk
-- [ ] Bandit (if Python)
+- [ ] Bandit
 
-*Reports/screenshots are included in the `scans/` directory.*
+> Reports and screenshots are located in the `scans/` directory.
 
-## Deployment
-**Instructions to run locally:**
+## Deployment Instructions
 
-**1. Database (Docker):**
-```bash
-docker-compose up -d
-```
-**2. Backend (ASP.NET Core):**
+### 1. Database Setup
+Run the SQL Server instance and update the connection string in `SecureBackend/appsettings.json`.
+
+### 2. Backend Setup
 ```bash
 cd SecureBackend
 dotnet ef database update
 dotnet run
 ```
-**3. Frontend (React):**
+
+### 3. Frontend Setup
+Create a `.env` file in the `secure-frontend` directory and add the following:
+```bash
+VITE_API_URL=http://localhost:5088
+```
+
+Then, install dependencies and start the development server:
 ```bash
 cd secure-frontend
 npm install
 npm run dev
 ```
+
 ## Folder Structure
-/secure-frontend    --> React App (Frontend)
-/SecureBackend      --> ASP.NET Web API (Backend)
-/docs               --> STRIDE, DREAD Documentation
-/scans              --> Scanning reports/screenshots
-README.md
-docker-compose.yml  --> SQL Server environment
+```text
+/secure-frontend    : React App (Frontend)
+/SecureBackend      : ASP.NET Web API (Backend)
+/docs               : STRIDE and DREAD Documentation
+/scans              : Scanning reports and screenshots
+README.md           : Project documentation
+```

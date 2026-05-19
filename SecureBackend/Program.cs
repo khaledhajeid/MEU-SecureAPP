@@ -106,8 +106,8 @@ using (var scope = app.Services.CreateScope())
         }
     }
 
-    string adminUsername = "admin";
-    string adminPassword = "Adminadmin123!";
+    string adminUsername = builder.Configuration["AdminSettings:Username"]!;
+    string adminPassword = builder.Configuration["AdminSettings:Password"]!;
     
     if (await userManager.FindByNameAsync(adminUsername) == null)
     {
@@ -116,7 +116,7 @@ using (var scope = app.Services.CreateScope())
         
         if (result.Succeeded)
         {
-            await userManager.AddToRoleAsync(adminUser, "admin");
+            await userManager.AddToRoleAsync(adminUser, "Admin");
         }
     }
 }
