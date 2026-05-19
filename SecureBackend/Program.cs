@@ -95,12 +95,28 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    
     var roles = new[] { "Admin", "User" };
     foreach (var role in roles)
     {
         if (!await roleManager.RoleExistsAsync(role))
         {
             await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+
+    string adminUsername = "admin";
+    string adminPassword = "Adminadmin123!";
+    
+    if (await userManager.FindByNameAsync(adminUsername) == null)
+    {
+        var adminUser = new IdentityUser { UserName = adminUsername, Email = "admin@meu.edu" };
+        var result = await userManager.CreateAsync(adminUser, adminPassword);
+        
+        if (result.Succeeded)
+        {
+            await userManager.AddToRoleAsync(adminUser, "admin");
         }
     }
 }
