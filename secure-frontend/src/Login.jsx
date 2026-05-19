@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -15,7 +16,7 @@ export default function Login() {
       });
       
       localStorage.setItem('token', response.data.token);
-      setMessage('Sucsessfuly login and added the token in the local storage');
+      setMessage('Successfully logged in and added the token to local storage');
       
     } catch (error) {
       setMessage('Login failed, check the username or password');
@@ -31,7 +32,7 @@ export default function Login() {
           <input 
             type="text" 
             value={username} 
-            onChange={(e) => setUsername(e.target.value)} 
+            onChange={(e) => setUsername(DOMPurify.sanitize(e.target.value))} 
             required 
             style={{ width: '100%', padding: '8px' }}
           />
@@ -41,7 +42,7 @@ export default function Login() {
           <input 
             type="password" 
             value={password} 
-            onChange={(e) => setPassword(e.target.value)} 
+            onChange={(e) => setPassword(DOMPurify.sanitize(e.target.value))} 
             required 
             style={{ width: '100%', padding: '8px' }}
           />
